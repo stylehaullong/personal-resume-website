@@ -46,12 +46,6 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
             </ListItemIcon>
             {isOpen && <ListItemText primary="About" />}
           </ListItem>
-          <ListItem button component={Link} href="/SignPDF">
-            <ListItemIcon>
-              <BarChartIcon />
-            </ListItemIcon>
-            {isOpen && <ListItemText primary="SignPDF" />}
-          </ListItem>
           <ListItem button component={Link} href="/live-analytics">
             <ListItemIcon>
               <BarChartIcon />
