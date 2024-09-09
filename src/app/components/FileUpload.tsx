@@ -68,7 +68,6 @@ const FileUpload: React.FC<FileUploadProps> = ({ onDataUpload, existingColumns }
             header: true,
             skipEmptyLines: true,
             dynamicTyping: true,
-            trimHeaders: true, // Trim spaces around headers
             error: (error) => {
               console.error('CSV parsing error:', error);
               setError(`Error parsing CSV: ${error.message}`);
