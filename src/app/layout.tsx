@@ -1,53 +1,43 @@
-'use client'
+import type { Metadata } from "next";
+import { Archivo, Space_Grotesk } from "next/font/google";
+import "./globals.css";
 
-import { useState } from 'react'
-import './globals.css'
-import Navbar from './components/NavBar'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-
-if (typeof Promise.withResolvers === 'undefined') {
-  (Promise as any).withResolvers = function () {
-    let resolve!: (value: unknown) => void;
-    let reject!: (reason?: any) => void;
-    const promise = new Promise((res, rej) => {
-      resolve = res;
-      reject = rej;
-    });
-    return { promise, resolve, reject };
-  };
-}
-
-const theme = createTheme({
-  palette: {
-    background: {
-      default: '#ffffff',
-    },
-  },
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-archivo",
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
+
+const grotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-grotesk",
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+export const metadata: Metadata = {
+  title: "Long Nguyen — Senior Data Engineer",
+  description:
+    "Independent senior data engineer building production-grade pipelines, lakehouses, and ML infrastructure for teams that need it to just work.",
+  metadataBase: new URL("https://longnguyen.dev"),
+  openGraph: {
+    title: "Long Nguyen — Senior Data Engineer",
+    description:
+      "Independent senior data engineer building production-grade pipelines, lakehouses, and ML infrastructure.",
+    type: "website",
+  },
+  twitter: { card: "summary_large_image" },
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const [isNavOpen, setIsNavOpen] = useState(true)
-
   return (
-    <html lang="en">
-      <body>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <div className="flex h-screen overflow-hidden bg-white">
-            <Navbar isOpen={isNavOpen} setIsOpen={setIsNavOpen} />
-            <main className={`flex-1 overflow-hidden transition-all duration-300 ${isNavOpen ? 'ml-64' : 'ml-16'}`}>
-              <div className="h-full overflow-x-auto overflow-y-auto p-6">
-                {children}
-              </div>
-            </main>
-          </div>
-        </ThemeProvider>
-      </body>
+    <html lang="en" className={`${archivo.variable} ${grotesk.variable}`}>
+      <body className="noise bg-ink-950 text-ink-50">{children}</body>
     </html>
-  )
+  );
 }
